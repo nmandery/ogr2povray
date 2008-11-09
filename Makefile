@@ -10,7 +10,7 @@ clean:
 
 pov:
 	cat head.pov >$(OUTPUT).pov
-	./wkt2pov.py >>$(OUTPUT).pov
+	./example-postgis.py >>$(OUTPUT).pov
 
 render:
 	$(POVRAY) $(POV_OPTIONS) +O$(OUTPUT).png $(OUTPUT).pov
