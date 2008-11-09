@@ -1,18 +1,21 @@
 POVRAY=povray
-#BUILD_DIR=build
-OUTPUT=world
+BUILD_DIR=build
+OUTPUT_PG=world
 POV_HEADER=head.pov
 POV_OPTIONS=+W2000 +H1125 +Q11 +A
 #POV_OPTIONS=-geometry 400x350 +Q10 +A
 
 clean:
-	rm -rf $(OUTPUT).png $(OUTPUT).rca $(OUTPUT).pov
+	rm -rf $(BUILD_DIR)/$(OUTPUT_PG).png $(BUILD_DIR)/$(OUTPUT_PG).rca $(BUILD_DIR)/$(OUTPUT_PG).pov
 
-pov:
-	cat head.pov >$(OUTPUT).pov
-	./example-postgis.py >>$(OUTPUT).pov
+pov_pg:
+	cat head.pov >$(BUILD_DIR)/$(OUTPUT_PG).pov
+	./example-postgis.py >>$(BUILD_DIR)/$(OUTPUT_PG).pov
 
-render:
-	$(POVRAY) $(POV_OPTIONS) +O$(OUTPUT).png $(OUTPUT).pov
+render_pg:
+	$(POVRAY) $(POV_OPTIONS) +O$(BUILD_DIR)/$(OUTPUT_PG).png $(BUILD_DIR)/$(OUTPUT_PG).pov
 
-all: clean pov render
+
+postgis: pov_pg render_pg
+
+
