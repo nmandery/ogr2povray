@@ -25,7 +25,7 @@ class EarthPOV:
       """
       note: polygons with "holes" will not work
       """
-      if not wkt.startswith('POLYGON(('):
+      if not (wkt.startswith('POLYGON') or wkt.startswith('LINEARRING')):
          raise TypeError('Only Polygons are supported')
       if not 0.0<=value<=1.0:
          raise ValueError('value has to be between 0.0 and 1.0')
