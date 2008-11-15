@@ -16,8 +16,9 @@ camera {
    focal_point < 0, 10, 0> // focus on this point
 }
 
-light_source { <90, 300, 0> color rgb 1 }
-light_source { <-90, 300, 0> color rgb 1 }
+//light_source { <90, 300, 0> color rgb 1 }
+//light_source { <-90, 300, 0> color rgb 1 }
+light_source { <0, 300, 0> color rgb <1.5 1.5 1.5> }
 
 plane { y, 0
    pigment { 
@@ -34,10 +35,13 @@ plane { y, 0
 
 """
 
-filename = 'data-ogr/shp2929/shp2929.shp'
+#filename = 'data-ogr/shp2929_wo_greenland/shp2929.shp'
+#datafieldname='Per Capita'
+#layername='shp2929'
 
-datafieldname='Per Capita'
-layername='shp2929'
+filename = 'data-ogr/shp1839/shp1839.shp'
+datafieldname='i'
+layername='shp1839'
 
 class Prism:
    def __init__(self,height,cubic=False):
@@ -79,8 +83,9 @@ class OGR2PovrayParser:
       self.layer=layer
       self.gradient=gradient
       self.prisms=[]
-      self.threshold_area=10 # only render features with an area bigger than this
+      self.threshold_area=1 # only render features with an area bigger than this
       self.prism_maxheight=80
+      self.prism_minheight=0.001
       self.maxvalue=self.getMaxvalue(filename)
 
    def getMaxvalue(self,filename):
@@ -106,6 +111,8 @@ class OGR2PovrayParser:
       while (feat):
          geom = feat.GetGeometryRef()
          thisheight = self.prism_maxheight*(feat.GetFieldAsDouble(df_idx)/self.maxvalue)
+         if thisheight<self.prism_minheight: # features without/with small values should also be rendered
+            thisheight=self.prism_minheight
          thisrgb = gradient.getColor(feat.GetFieldAsDouble(df_idx)/self.maxvalue).rgb()
          gt = geom.GetGeometryType()
          if gt==ogr.wkbPolygon:
