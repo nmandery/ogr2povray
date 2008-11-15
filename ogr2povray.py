@@ -35,11 +35,7 @@ plane { y, 0
 
 """
 
-#filename = 'data-ogr/shp2929_wo_greenland/shp2929.shp'
-#datafieldname='Per Capita'
-#layername='shp2929'
-
-filename = 'data-ogr/shp1839/shp1839.shp'
+filename = 'data/shp1839/shp1839.shp'
 datafieldname='i'
 layername='shp1839'
 

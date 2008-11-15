@@ -1,0 +1,12 @@
+The World Bank, Road Density - land (road-km/1000 sq km), World, 1990-2002
+
+This data set displays figures on road density for countries around the world. 
+This data is presented at the country level, and covers the time period 
+spanning from 1990 - 2002. Please note that when no information was available,
+the value -1 was used as a placeholder for statistical purposes.
+
+This data was made available through the World Bank, and * INFVP calculations 
+using WDI data 
+
+source:
+http://finder.geocommons.com/overlays/5419

@@ -1,9 +1,8 @@
-
 import colorsys
 
 class Color:
    """
-   pretty basic class to manage colors
+   basic class to manage colors
    """
    
    def __init__(self,rgb=None,hsv=None):
@@ -84,4 +83,3 @@ class HSVGradient(Gradient):
          c = hsv1[i]-hsv2[i]
          result.append(hsv1[i]-(c*value))
       return Color(hsv=result)
-         

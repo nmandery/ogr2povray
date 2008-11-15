@@ -1,21 +1,15 @@
 POVRAY=povray
-BUILD_DIR=build
-OUTPUT_PG=world
-POV_HEADER=head.pov
+OUTPUT_PG=world_road_density
 POV_OPTIONS=+W2000 +H1125 +Q11 +A
 #POV_OPTIONS=-geometry 400x350 +Q10 +A
 
 clean:
-	rm -rf $(BUILD_DIR)/$(OUTPUT_PG).png $(BUILD_DIR)/$(OUTPUT_PG).rca $(BUILD_DIR)/$(OUTPUT_PG).pov
+	rm -rf $(OUTPUT_PG).png $(OUTPUT_PG).rca $(OUTPUT_PG).pov
 
-pov_pg:
-	cat head.pov >$(BUILD_DIR)/$(OUTPUT_PG).pov
-	./example-postgis.py >>$(BUILD_DIR)/$(OUTPUT_PG).pov
+pov: clean
+	./ogr2povray.py >$(OUTPUT_PG).pov
 
-render_pg:
-	$(POVRAY) $(POV_OPTIONS) +O$(BUILD_DIR)/$(OUTPUT_PG).png $(BUILD_DIR)/$(OUTPUT_PG).pov
-
-
-postgis: pov_pg render_pg
+render: pov
+	$(POVRAY) $(POV_OPTIONS) +O$(OUTPUT_PG).png $(OUTPUT_PG).pov
 
 
