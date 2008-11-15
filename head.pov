@@ -1,5 +1,5 @@
 
-#include "colors.inc"
+//#include "colors.inc"
 /*
 global_settings {
    radiosity {
@@ -49,6 +49,4 @@ plane { y, 0
       roughness .001  
       reflection { .1 }  
    }
-
 }
-
