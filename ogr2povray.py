@@ -3,6 +3,7 @@
 import osgeo.ogr as ogr
 import osgeo.osr as osr
 import sys
+import math
 from colorgradient import *
 
 pov_header = """
@@ -71,7 +72,7 @@ class Prism:
 
 
 class OGR2PovrayParser:
-   def __init__(self,filename,datafield,layer,gradient):
+   def __init__(self,filename,datafield,layer,gradient,log=False):
       self.datasource=ogr.Open(filename)
       if self.datasource==None:
          raise IOError('unable to open file.')
@@ -79,6 +80,7 @@ class OGR2PovrayParser:
       self.layer=layer
       self.gradient=gradient
       self.prisms=[]
+      self.log=log # use logarithmic color curve
       self.threshold_area=1 # only render features with an area bigger than this
       self.prism_maxheight=80 # max height a prism can have
       self.prism_minheight=0.001 # min height a prism can have. 
@@ -116,10 +118,22 @@ class OGR2PovrayParser:
          if not geom.GetSpatialReference() in (None,sr84):
             geom.TransformTo(sr84)
 
+         # color
+         if self.log: # logarithmic color curve
+            fieldvalue=feat.GetFieldAsDouble(df_idx)+1.0
+            if fieldvalue!=0.0:
+               thislog=math.log(feat.GetFieldAsDouble(df_idx)+1.0,self.maxvalue+1)
+            else:
+               thislog=0.0
+            thisrgb=gradient.getColor(thislog).rgb()
+         else: # linear color curve
+            thisrgb = gradient.getColor(feat.GetFieldAsDouble(df_idx)/self.maxvalue).rgb()
+
+         # height of the prism
          thisheight = self.prism_maxheight*(feat.GetFieldAsDouble(df_idx)/self.maxvalue)
          if thisheight<self.prism_minheight: # features without/with small values shall also be rendered
             thisheight=self.prism_minheight
-         thisrgb = gradient.getColor(feat.GetFieldAsDouble(df_idx)/self.maxvalue).rgb()
+
          gt=geom.GetGeometryType()
          if gt==ogr.wkbPolygon:
             self.addPolygon(geom,thisheight,thisrgb)
@@ -131,7 +145,8 @@ class OGR2PovrayParser:
       if geom.GetArea()>self.threshold_area:
          prism = Prism(height)
          prism.setRGB(rgb)
-         g2=geom.GetBoundary() # ommit inner polygons ("holes")
+         #g2=geom.GetBoundary() # ommit inner polygons ("holes")
+         g2=geom.GetGeometryRef(0) # GetBoundary looses countries like italy and south africa which contain other countries
          for j in range(0,g2.GetPointCount()):
             x,y,z=g2.GetPoint(j)
             prism.addPoint(x,y)
@@ -150,7 +165,7 @@ green = Color(rgb=[0.0,180.0/255.0,0.0])
 red = Color(rgb=(180.0/255.0,0.0,0.0))
 gradient = HSVGradient(c1=green,c2=red)
 
-povparser=OGR2PovrayParser(filename,datafieldname,layername,gradient)
+povparser=OGR2PovrayParser(filename,datafieldname,layername,gradient,log=True)
 povparser.parse()
 
 print pov_header
