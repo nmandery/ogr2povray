@@ -80,8 +80,8 @@ class OGR2PovrayParser:
       self.gradient=gradient
       self.prisms=[]
       self.threshold_area=1 # only render features with an area bigger than this
-      self.prism_maxheight=80
-      self.prism_minheight=0.001
+      self.prism_maxheight=80 # max height a prism can have
+      self.prism_minheight=0.001 # min height a prism can have. 
       self.maxvalue=self.getMaxvalue(filename)
 
    def getMaxvalue(self,filename):
@@ -89,6 +89,7 @@ class OGR2PovrayParser:
       if datasource==None:
          raise IOError('unable to open file.')     
       # get maximal value of datafield
+      # opened datasource again because using the same datasource did not work...
       sqllyr=datasource.ExecuteSQL('SELECT max("%s") FROM %s' % (self.datafield,self.layer))
       if not sqllyr:
          raise IOError("Failed to query layer %s." % self.layer)
@@ -103,14 +104,23 @@ class OGR2PovrayParser:
       feat=lyr.GetNextFeature()
       fdfn=feat.GetDefnRef()
       df_idx=fdfn.GetFieldIndex(self.datafield)
-      #maxvalue=10578947.4 
+
+      #prepare spatial reference for wgs84
+      sr84=osr.SpatialReference()
+      sr84.ImportFromEPSG(4326)
+
       while (feat):
          geom = feat.GetGeometryRef()
+
+         # transform geom to wgs84 if possible. if no sr is assigned, no transformation is possible
+         if not geom.GetSpatialReference() in (None,sr84):
+            geom.TransformTo(sr84)
+
          thisheight = self.prism_maxheight*(feat.GetFieldAsDouble(df_idx)/self.maxvalue)
-         if thisheight<self.prism_minheight: # features without/with small values should also be rendered
+         if thisheight<self.prism_minheight: # features without/with small values shall also be rendered
             thisheight=self.prism_minheight
          thisrgb = gradient.getColor(feat.GetFieldAsDouble(df_idx)/self.maxvalue).rgb()
-         gt = geom.GetGeometryType()
+         gt=geom.GetGeometryType()
          if gt==ogr.wkbPolygon:
             self.addPolygon(geom,thisheight,thisrgb)
          if gt==ogr.wkbMultiPolygon:
@@ -121,7 +131,7 @@ class OGR2PovrayParser:
       if geom.GetArea()>self.threshold_area:
          prism = Prism(height)
          prism.setRGB(rgb)
-         g2=geom.GetGeometryRef(0) # GetBoundary() does not return all ???
+         g2=geom.GetBoundary() # ommit inner polygons ("holes")
          for j in range(0,g2.GetPointCount()):
             x,y,z=g2.GetPoint(j)
             prism.addPoint(x,y)
