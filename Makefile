@@ -1,6 +1,6 @@
 POVRAY=povray
 OUTPUT_PG=world_road_density
-POV_OPTIONS=+W2000 +H1125 +Q11 +A
+POV_OPTIONS=+W1000 +H575 +Q11 +A
 #POV_OPTIONS=-geometry 400x350 +Q10 +A
 
 clean:
