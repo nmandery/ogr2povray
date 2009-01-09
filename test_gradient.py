@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from colorgradient import *
+from ogr2povray.gradient import *
 
 green = Color(rgb=[0.0,1.0,0.0])
 red = Color(rgb=(1.0,0.0,0.0))

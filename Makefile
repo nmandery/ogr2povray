@@ -7,7 +7,7 @@ clean:
 	rm -rf $(OUTPUT_PG).png $(OUTPUT_PG).rca $(OUTPUT_PG).pov
 
 pov: clean
-	./ogr2povray.py >$(OUTPUT_PG).pov
+	./example.py >$(OUTPUT_PG).pov
 
 render: pov
 	$(POVRAY) $(POV_OPTIONS) +O$(OUTPUT_PG).png $(OUTPUT_PG).pov
