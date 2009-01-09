@@ -1,0 +1,5 @@
+See doc/source/index.rst for documentation or generate the 
+HTML-docs with sphinx (http://sphinx.pocoo.org/):
+
+cd docs
+make html
