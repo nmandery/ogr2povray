@@ -32,9 +32,7 @@ plane { y, 0
 
 """
 
-#filename = 'data/shp1839/shp1839.shp'
-#datafieldname='i'
-#layername='shp1839'
+# data
 filename = 'data/shp7847/shp7847.shp'
 datafieldname='CARBONFOOT'
 layername='shp7847'

@@ -1,0 +1,49 @@
+Ecological Footprint, World by Country, 2006
+
+This dataset contains the "Ecological Footprint, biocapacity and other data on more than 150 nations in the year 2003 as calculated in the 2006 Edition of the National Footprint Accounts . WWF International was the primary sponsor of this year's update. These data were first published in WWF's Living Planet Report 2006." All values are global ha/person and values of 0.0 represent less than 0.05
+
+NAME: Country Name - Country Name
+ISO_3_CODE: Country Code - Country Code
+ISO_2_CODE: Country Code - Country Code
+TOTBIOCAP: Total Biocapacity - Total Biocapacity(global ha/person)
+GRAZBIO: Grazing land (Biocapacity) - Grazing land (Included in Total Biocapacity)(global ha/person)
+
+Country: Country Name - Country Name
+FISHBIO: Fishing grounds (Biocapacity) - Fishing grounds (Included in Total Biocapacity)(global ha/person)
+
+TIMBERFOOT: Forest: timber, pulp and paper Footprint - Forest: timber, pulp and paper Footprint (Included in Total Footprint)(global ha/person)
+
+GMI_CNTR_1: Country Code - Country Code
+CROPBIO: Cropland (Biocapacity) - Cropland (Included in Total Biocapacity)(global ha/person)
+
+POP: Population in Millions - Population in Millions
+BUILTUP: Built-up land Footprint - Built-up land Footprint (Built-up land is part of both Footprint and biocapacity. Hydro is included in built-up land Footprint)(global ha/person)
+
+GRAZFOOT: Grazing land Footprint - Grazing land Footprint (Included in Total Footprint)(global ha/person)
+
+TOTFOOT: Total Ecological Footprint - Total Ecological Footprint (global ha/person)
+
+NAME_1: Country Name - Country Name
+FUELFOOT: Forest: fuelwood Footprint - Forest: fuelwood Footprint (Included in Total Footprint)(global ha/person)
+
+CROPFOOT: Cropland Footprint - Cropland Footprint (Included in Total Footprint)(global ha/person)
+
+ECODEF: Ecological Deficit - Ecological deficit (-) or reserve (+)4 (If number for ecological deficit is positive, country has an ecological reserve.)(global ha/person)
+
+FORBIO: Forest (Biocapacity) - Forest (Included in Total Biocapacity)(global ha/person)
+
+
+
+CARBONFOOT: Carbon Footprint - Carbon Footprint (Included in Total Footprint)(global ha/person)
+
+
+REGION: Region - Region
+GMI_CNTRY: Country Code - Country Code
+NUCFOOT: Nuclear Footprint - Nuclear Footprint (Included in Total Footprint)(global ha/person)
+
+FISHFOOT: Fishing ground Footprint - Fishing ground Footprint (Included in Total Footprint)(global ha/person)
+
+
+NAME_12: Country Name - Country Name
+
+exported on Thu Oct 23 23:54:52 -0400 2008
