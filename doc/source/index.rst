@@ -13,7 +13,7 @@ Contents:
 What is it?
 -----------
 
-.. image:: _static/worldcarbonfootprint.png
+.. image:: _static/worldcarbonfootprint.jpg
 
 
 
