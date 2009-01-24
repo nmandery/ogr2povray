@@ -38,9 +38,15 @@ datafieldname='CARBONFOOT'
 layername='shp7847'
 
 # colors
+# green-red 
 green = gradient.Color(rgb=[0.0,180.0/255.0,0.0])
 red = gradient.Color(rgb=(180.0/255.0,0.0,0.0))
 gradient = gradient.HSVGradient(c1=green,c2=red)
+
+# lightblue-blue
+#lightblue = gradient.Color(rgb=(92.0/255.0,142.0/255.0,232.0/255.0))
+#blue = gradient.Color(rgb=(24.0/255.0,77.0/255.0,173.0/255.0))
+#gradient = gradient.HSVGradient(c1=lightblue,c2=blue)
 
 povparser=parser.Polygon2PrismParser(filename,datafieldname,layername,gradient,log=True)
 povparser.parse()
