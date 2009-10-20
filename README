@@ -1,4 +1,4 @@
-These python scrupt generate a Povray scene from geographic vector 
+This python script generates a Povray scene from geographic vector 
 data. At this point only polygon geometries in WGS84 projection are 
 supported.
 
