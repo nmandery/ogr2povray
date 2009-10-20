@@ -3,4 +3,4 @@ Ecological Footprint, World by Country, 2006
 This dataset contains the "Ecological Footprint, biocapacity and other data on more than 150 nations in the year 2003 as calculated in the 2006 Edition of the National Footprint Accounts . WWF International was the primary sponsor of this year's update. These data were first published in WWF's Living Planet Report 2006." All values are global ha/person and values of 0.0 represent less than 0.05
 
 The rendered column is "Carbon Footprint".
-For mor info see http://finder.geocommons.com/overlays/5561
+For more info see http://finder.geocommons.com/overlays/5561

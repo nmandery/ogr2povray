@@ -3,7 +3,7 @@ OUTPUT_PG=world_carbonfootprint
 POV_OPTIONS=+W1000 +H575 +Q11 +A
 
 clean:
-	rm -rf $(OUTPUT_PG).png $(OUTPUT_PG).rca $(OUTPUT_PG).pov
+	rm -f $(OUTPUT_PG).png $(OUTPUT_PG).rca $(OUTPUT_PG).pov
 
 pov: clean
 	./example.py >$(OUTPUT_PG).pov

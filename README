@@ -1,5 +1,24 @@
-See doc/source/index.rst for documentation or generate the 
+These python scrupt generate a Povray scene from geographic vector 
+data. At this point only polygon geometries in WGS84 projection are 
+supported.
+
+The requirements:
+ * gdal library and the python bindings
+ * povray
+
+
+An example rendering is at doc/_static/worldcarbonfootprint.jpg
+The data used for this rendering is downloaded for geocommons.org - 
+for more indo see date/data_info.txt
+
+To render the example use
+ make render
+
+
+
+Additionaly there are also some pretty unfinished docs in the 
+doc directory. See doc/source/index.rst for or generate the 
 HTML-docs with sphinx (http://sphinx.pocoo.org/):
 
-cd docs
-make html
+ cd docs
+ make html
